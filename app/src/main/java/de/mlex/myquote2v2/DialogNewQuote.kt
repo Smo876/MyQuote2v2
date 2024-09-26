@@ -26,7 +26,7 @@ import de.mlex.myquotesii.data.DataProvider.quotes
 import de.mlex.myquotesii.data.Quote
 
 @Composable
-fun DialogNewQuote(openAlertDialog: MutableIntState) {
+fun DialogNewQuote(openAlertDialog: MutableIntState, scrollToEnd: MutableIntState) {
     val context = LocalContext.current
     var quote by remember { mutableStateOf("") }
     var author by remember { mutableStateOf("") }
@@ -49,7 +49,6 @@ fun DialogNewQuote(openAlertDialog: MutableIntState) {
                     text = "Enter a new quote:",
                     modifier = Modifier.padding(16.dp),
                 )
-
                 TextField(
                     value = quote,
                     onValueChange = { quote = it },
@@ -68,7 +67,6 @@ fun DialogNewQuote(openAlertDialog: MutableIntState) {
                     label = { Text("Year") },
                     modifier = Modifier.fillMaxWidth()
                 )
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -94,10 +92,8 @@ fun DialogNewQuote(openAlertDialog: MutableIntState) {
                                 quotes.add(
                                     Quote(quote, author, year)
                                 )
+                                scrollToEnd.intValue = 1
                                 openAlertDialog.intValue = 0
-                                // scroll to the new page
-                                //val coroutineScope = rememberCoroutineScope()
-                                //coroutineScope.launch { pagerState.animateScrollToPage(quotes.size-1) }
 
                             }
                         },
