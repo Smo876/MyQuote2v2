@@ -17,13 +17,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import de.mlex.myquotesii.data.DataProvider
 import de.mlex.myquotesii.data.DataProvider.quotes
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MyQuote() {
-    val pagerState = rememberPagerState(pageCount = { DataProvider.quotes.size })
+    val pagerState = rememberPagerState(pageCount = { quotes.size })
     val index = remember { derivedStateOf { pagerState.currentPage } }
 
     HorizontalPager(state = pagerState) {
