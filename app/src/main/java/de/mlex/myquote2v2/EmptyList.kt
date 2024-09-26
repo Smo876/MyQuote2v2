@@ -18,6 +18,7 @@ fun EmptyList(modifier: Modifier = Modifier) {
 
     OutlinedCard(
         modifier = modifier
+            .padding(horizontal = 24.dp)
     ) {
 
         Column(

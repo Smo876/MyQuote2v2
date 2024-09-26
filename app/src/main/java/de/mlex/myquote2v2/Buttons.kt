@@ -14,9 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import de.mlex.myquotesii.data.Quote
 
 @Composable
-fun Buttons(openAddQuoteDialog: MutableIntState) {
+fun Buttons(openAddQuoteDialog: MutableIntState, items: List<Quote>) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -32,18 +33,18 @@ fun Buttons(openAddQuoteDialog: MutableIntState) {
             )
         }
 
-        IconButton(
-            onClick = {
-                //DataProvider.quotes.removeAt(index.intValue)
-                //if (DataProvider.quotes.size > 0 && index.intValue == DataProvider.quotes.size) index.intValue--
-                //model.deleteQuote(index)
-            }) {
-            Icon(
-                Icons.Filled.Delete,
-                contentDescription = "Add",
-                tint = androidx.compose.ui.graphics.Color.Gray,
-                modifier = Modifier.size(30.dp)
-            )
+        if (items.isNotEmpty()) {
+            IconButton(
+                onClick = {
+                    openAddQuoteDialog.intValue = 2
+                }) {
+                Icon(
+                    Icons.Filled.Delete,
+                    contentDescription = "Add",
+                    tint = androidx.compose.ui.graphics.Color.Gray,
+                    modifier = Modifier.size(30.dp)
+                )
+            }
         }
     }
 }

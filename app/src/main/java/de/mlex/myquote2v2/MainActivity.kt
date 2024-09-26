@@ -44,7 +44,8 @@ private fun QuoteScreen() {
         val items by remember { mutableStateOf(quotes) }
         val openAlertDialog = remember { mutableIntStateOf(0) }
         val scrollToEnd = remember { mutableIntStateOf(0) }
-        Scaffold(bottomBar = { Buttons(openAlertDialog) }
+        val deleteQuote = remember { mutableIntStateOf(0) }
+        Scaffold(bottomBar = { Buttons(openAlertDialog, items) }
         ) {
             Column(
                 modifier = Modifier
@@ -53,15 +54,14 @@ private fun QuoteScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally,
 
                 ) {
-                if (quotes.size > 0) MyQuote(items, scrollToEnd)
+                if (items.isNotEmpty()) MyQuote(items, scrollToEnd, deleteQuote)
                 else EmptyList()
             }
         }
 
         when (openAlertDialog.intValue) {
-            1 -> {
-                DialogNewQuote(openAlertDialog, scrollToEnd)
-            }
+            1 -> DialogNewQuote(openAlertDialog, scrollToEnd)
+            2 -> DialogDeleteQuote(openAlertDialog, deleteQuote)
         }
     }
 
