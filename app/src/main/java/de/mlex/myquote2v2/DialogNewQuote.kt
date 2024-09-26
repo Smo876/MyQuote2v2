@@ -46,7 +46,7 @@ fun DialogNewQuote(openAlertDialog: MutableIntState) {
             ) {
 
                 Text(
-                    text = "Enter a new quote",
+                    text = "Enter a new quote:",
                     modifier = Modifier.padding(16.dp),
                 )
 

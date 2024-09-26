@@ -18,7 +18,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Buttons(openAddQuoteDialog: MutableIntState) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
         horizontalArrangement = Arrangement.End
     ) {
         IconButton(onClick = { openAddQuoteDialog.intValue = 1 }) {

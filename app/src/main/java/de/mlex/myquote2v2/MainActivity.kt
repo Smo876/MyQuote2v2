@@ -11,7 +11,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,7 +33,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "MutableCollectionMutableState")
 @Preview
 @Composable
 private fun QuoteScreen() {
@@ -39,6 +41,7 @@ private fun QuoteScreen() {
         modifier = Modifier,
         color = MaterialTheme.colorScheme.background
     ) {
+        val items by remember { mutableStateOf(quotes) }
         val openAlertDialog = remember { mutableIntStateOf(0) }
         Scaffold(bottomBar = { Buttons(openAlertDialog) }
         ) {
@@ -49,7 +52,7 @@ private fun QuoteScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally,
 
                 ) {
-                if (quotes.size > 0) MyQuote()
+                if (quotes.size > 0) MyQuote(items)
                 else EmptyList()
             }
         }
