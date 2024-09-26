@@ -11,13 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 
 @Composable
-fun DialogDeleteQuote(openAlertDialog: MutableIntState, deleteQuote: MutableIntState) {
+fun DialogDeleteQuote(openAlertDialog: MutableIntState, deleteQuote: MutableState<Boolean>) {
     Dialog(onDismissRequest = { }) {
         Card(
             modifier = Modifier
@@ -49,7 +50,7 @@ fun DialogDeleteQuote(openAlertDialog: MutableIntState, deleteQuote: MutableIntS
                     TextButton(
                         onClick = {
                             openAlertDialog.intValue = 0
-                            deleteQuote.intValue = 1
+                            deleteQuote.value = true
                         },
                         modifier = Modifier.padding(8.dp),
                     ) {

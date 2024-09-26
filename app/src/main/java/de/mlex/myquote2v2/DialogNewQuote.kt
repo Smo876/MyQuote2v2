@@ -27,7 +27,11 @@ import de.mlex.myquotesii.data.DataProvider.quotes
 import de.mlex.myquotesii.data.Quote
 
 @Composable
-fun DialogNewQuote(openAlertDialog: MutableIntState, scrollToEnd: MutableIntState, listIsNotEmpty: MutableState<Boolean>) {
+fun DialogNewQuote(
+    openAlertDialog: MutableIntState,
+    scrollToEnd: MutableState<Boolean>,
+    listIsNotEmpty: MutableState<Boolean>
+) {
     val context = LocalContext.current
     var quote by remember { mutableStateOf("") }
     var author by remember { mutableStateOf("") }
@@ -93,7 +97,7 @@ fun DialogNewQuote(openAlertDialog: MutableIntState, scrollToEnd: MutableIntStat
                                 quotes.add(
                                     Quote(quote, author, year)
                                 )
-                                scrollToEnd.intValue = 1
+                                scrollToEnd.value = true
                                 openAlertDialog.intValue = 0
                                 listIsNotEmpty.value = true
 
