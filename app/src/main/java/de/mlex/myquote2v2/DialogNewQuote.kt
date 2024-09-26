@@ -95,6 +95,10 @@ fun DialogNewQuote(openAlertDialog: MutableIntState) {
                                     Quote(quote, author, year)
                                 )
                                 openAlertDialog.intValue = 0
+                                // scroll to the new page
+                                //val coroutineScope = rememberCoroutineScope()
+                                //coroutineScope.launch { pagerState.animateScrollToPage(quotes.size-1) }
+
                             }
                         },
                         modifier = Modifier.padding(8.dp),
