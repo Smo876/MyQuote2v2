@@ -13,6 +13,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,7 +27,7 @@ import de.mlex.myquotesii.data.DataProvider.quotes
 import de.mlex.myquotesii.data.Quote
 
 @Composable
-fun DialogNewQuote(openAlertDialog: MutableIntState, scrollToEnd: MutableIntState) {
+fun DialogNewQuote(openAlertDialog: MutableIntState, scrollToEnd: MutableIntState, listIsNotEmpty: MutableState<Boolean>) {
     val context = LocalContext.current
     var quote by remember { mutableStateOf("") }
     var author by remember { mutableStateOf("") }
@@ -94,6 +95,7 @@ fun DialogNewQuote(openAlertDialog: MutableIntState, scrollToEnd: MutableIntStat
                                 )
                                 scrollToEnd.intValue = 1
                                 openAlertDialog.intValue = 0
+                                listIsNotEmpty.value = true
 
                             }
                         },

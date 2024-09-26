@@ -10,6 +10,7 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -27,7 +28,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("CoroutineCreationDuringComposition")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MyQuote(items: MutableList<Quote>, scrollToEnd: MutableIntState, deleteQuote: MutableIntState) {
+fun MyQuote(items: MutableList<Quote>, scrollToEnd: MutableIntState, deleteQuote: MutableIntState, listIsNotEmpty: MutableState<Boolean>) {
     val pagerState = rememberPagerState(pageCount = { items.size })
     val page = remember { derivedStateOf { pagerState.currentPage } }
     HorizontalPager(
@@ -71,6 +72,7 @@ fun MyQuote(items: MutableList<Quote>, scrollToEnd: MutableIntState, deleteQuote
     when (deleteQuote.intValue) {
         1 -> {
             items.removeAt(page.value)
+            if(items.isEmpty()) listIsNotEmpty.value = false
             deleteQuote.intValue = 0
         }
     }
