@@ -45,7 +45,7 @@ private fun QuoteScreen() {
         val openAlertDialog = remember { mutableIntStateOf(0) }
         val scrollToEnd = remember { mutableStateOf(false) }
         val deleteQuote = remember { mutableStateOf(false) }
-        val listIsNotEmpty = remember { mutableStateOf(quotes.isNotEmpty()) }
+        val listIsNotEmpty = remember { mutableStateOf(items.isNotEmpty()) }
         Scaffold(
             topBar = { TopBar() },
             bottomBar = { Buttons(openAlertDialog, items) }
