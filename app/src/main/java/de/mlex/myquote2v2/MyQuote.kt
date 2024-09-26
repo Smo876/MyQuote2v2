@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import de.mlex.myquotesii.data.Quote
+import de.mlex.myquote2v2.data.Quote
 import kotlinx.coroutines.launch
 
 

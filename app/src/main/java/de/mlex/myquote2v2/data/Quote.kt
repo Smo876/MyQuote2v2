@@ -1,4 +1,13 @@
-package de.mlex.myquotesii.data
+package de.mlex.myquote2v2.data
 
-data class Quote(val text: String, val author: String, val year: String) {
-}
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity("quotes")
+data class Quote(
+    val text: String,
+    val author: String,
+    val year: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0
+)

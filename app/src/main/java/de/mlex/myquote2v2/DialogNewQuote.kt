@@ -23,8 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import de.mlex.myquotesii.data.DataProvider.quotes
-import de.mlex.myquotesii.data.Quote
+import de.mlex.myquote2v2.data.DataProvider.quotes
+import de.mlex.myquote2v2.data.Quote
 
 @Composable
 fun DialogNewQuote(

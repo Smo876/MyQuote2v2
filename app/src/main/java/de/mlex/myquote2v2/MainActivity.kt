@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import de.mlex.myquote2v2.ui.theme.MyQuote2V2Theme
-import de.mlex.myquotesii.data.DataProvider.quotes
+import de.mlex.myquote2v2.data.DataProvider.quotes
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

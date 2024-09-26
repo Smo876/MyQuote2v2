@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.mlex.myquotesii.data.Quote
+import de.mlex.myquote2v2.data.Quote
 
 @Composable
 fun Buttons(openAddQuoteDialog: MutableIntState, items: List<Quote>) {

@@ -1,4 +1,6 @@
-package de.mlex.myquotesii.data
+package de.mlex.myquote2v2.data
+
+import de.mlex.myquote2v2.data.Quote
 
 object DataProvider {
     val quotes = mutableListOf(
