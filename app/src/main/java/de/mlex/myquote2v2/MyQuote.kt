@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MyQuote(
-    items: MutableList<Quote>,
+    items: List<Quote>,
     scrollToEnd: MutableState<Boolean>,
     deleteQuote: MutableState<Boolean>,
     listIsNotEmpty: MutableState<Boolean>
@@ -72,7 +72,7 @@ fun MyQuote(
         scrollToEnd.value = false
     }
     if (deleteQuote.value) {
-        items.removeAt(page.value)
+        //items.removeAt(page.value)
         if (items.isEmpty()) listIsNotEmpty.value = false
         deleteQuote.value = false
     }

@@ -5,12 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Quote::class],  version = 1)
-abstract class AppDatabase : RoomDatabase(){
-    abstract fun quotaDao(): QuoteDao
+@Database(entities = [Quote::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun quoteDao(): QuoteDao
 
     companion object {
-        @Volatile private var instance: AppDatabase? = null
+        @Volatile
+        private var instance: AppDatabase? = null
+
         @Synchronized
         fun getDatabase(context: Context): AppDatabase {
             if (instance == null) {

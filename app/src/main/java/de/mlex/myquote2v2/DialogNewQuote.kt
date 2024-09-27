@@ -23,11 +23,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import de.mlex.myquote2v2.data.DataProvider.quotes
 import de.mlex.myquote2v2.data.Quote
 
 @Composable
 fun DialogNewQuote(
+    items: List<Quote>,
     openAlertDialog: MutableIntState,
     scrollToEnd: MutableState<Boolean>,
     listIsNotEmpty: MutableState<Boolean>
@@ -94,9 +94,9 @@ fun DialogNewQuote(
                             } else {
                                 if (author == "") author = "unknown"
                                 if (year == "") year = "unknown"
-                                quotes.add(
-                                    Quote(quote, author, year)
-                                )
+//                                items.add(
+//                                    Quote(quote, author, year)
+//                                )
                                 scrollToEnd.value = true
                                 openAlertDialog.intValue = 0
                                 listIsNotEmpty.value = true
