@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val quoteViewModel = ViewModelProvider(this)[QuoteViewModel::class.java]
 
+
         super.onCreate(savedInstanceState)
         setContent {
             MyQuote2V2Theme {

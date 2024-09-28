@@ -25,4 +25,5 @@ class QuoteViewModel(appObj: Application) : AndroidViewModel(appObj) {
         }
 
     }
+
 }
