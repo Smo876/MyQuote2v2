@@ -3,7 +3,7 @@ package de.mlex.myquote2v2.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity("quotes")
+@Entity(tableName = "quotes")
 data class Quote(
     val text: String,
     val author: String,

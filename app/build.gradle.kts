@@ -53,8 +53,11 @@ android {
 
 dependencies {
 
+    val lifecycle_version = "2.8.6"
+    val room_version = "2.6.1"
+
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
     implementation("androidx.activity:activity-compose:1.9.2")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("androidx.compose.ui:ui")
@@ -66,11 +69,11 @@ dependencies {
 
     api ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
     //noinspection LifecycleAnnotationProcessorWithJava8
-    annotationProcessor ("androidx.lifecycle:lifecycle-compiler:2.8.6")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
-    implementation ("androidx.room:room-runtime:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
-    kapt ("androidx.room:room-compiler:2.6.1")
+    annotationProcessor ("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation ("androidx.room:room-runtime:$room_version")
+    implementation ("androidx.room:room-ktx:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
 
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")

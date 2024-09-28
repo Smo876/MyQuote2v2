@@ -22,6 +22,7 @@ import de.mlex.myquote2v2.ui.theme.MyQuote2V2Theme
 
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         val quoteViewModel = ViewModelProvider(this)[QuoteViewModel::class.java]
 

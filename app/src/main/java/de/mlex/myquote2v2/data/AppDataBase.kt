@@ -10,8 +10,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun quoteDao(): QuoteDao
 
     companion object {
-        @Volatile
-        private var instance: AppDatabase? = null
+        @Volatile private var instance: AppDatabase? = null
 
         @Synchronized
         fun getDatabase(context: Context): AppDatabase {
