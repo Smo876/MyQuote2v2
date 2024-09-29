@@ -24,14 +24,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import de.mlex.myquote2v2.data.Quote
-import de.mlex.myquote2v2.data.QuoteViewModel
 
 @Composable
 fun DialogNewQuote(
-    quoteViewModel: QuoteViewModel,
     openAlertDialog: MutableIntState,
     scrollToEnd: MutableState<Boolean>,
-    listIsNotEmpty: MutableState<Boolean>
+    listIsNotEmpty: MutableState<Boolean>,
+    onInsertQuote: (Quote) -> Unit
 ) {
     val context = LocalContext.current
     var quote by remember { mutableStateOf("") }
@@ -95,10 +94,10 @@ fun DialogNewQuote(
                             } else {
                                 if (author == "") author = "unknown"
                                 if (year == "") year = "unknown"
-                                quoteViewModel.insertQuote(Quote(quote, author, year))
-//                                items.add(
-//                                    Quote(quote, author, year)
-//                                )
+                                // quoteViewModel.insertQuote(Quote(quote, author, year))
+                                onInsertQuote(
+                                    Quote(quote, author, year)
+                                )
                                 scrollToEnd.value = true
                                 openAlertDialog.intValue = 0
                                 listIsNotEmpty.value = true

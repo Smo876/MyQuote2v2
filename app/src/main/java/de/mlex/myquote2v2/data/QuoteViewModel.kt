@@ -1,30 +1,29 @@
 package de.mlex.myquote2v2.data
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class QuoteViewModel(appObj: Application) : AndroidViewModel(appObj) {
+class QuoteViewModel(private val quoteRepository: QuoteRepository) : ViewModel() {
 
-    private val quoteRepository: QuoteRepository = QuoteRepository(appObj)
-    fun getQuotes(): Flow<List<Quote>> {
-        return quoteRepository.readAllQuotes
-    }
+    val quotes: StateFlow<List<Quote>> = quoteRepository.readAllQuotes.onEach(::println).stateIn(
+        viewModelScope,
+        SharingStarted.Lazily, emptyList()
+    )
 
     fun insertQuote(quote: Quote) {
         viewModelScope.launch {
             quoteRepository.insertQuote(quote = quote)
         }
-
     }
 
-    fun deleteQuoteById(id: Int) {
+    fun deleteQuote(quote: Quote) {
         viewModelScope.launch {
-            quoteRepository.deleteQuoteById(id)
+            quoteRepository.deleteQuote(quote)
         }
-
     }
-
 }
