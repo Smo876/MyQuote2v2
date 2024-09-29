@@ -9,5 +9,5 @@ data class Quote(
     val author: String,
     val year: String,
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0
+    val id: Int = 0
 )

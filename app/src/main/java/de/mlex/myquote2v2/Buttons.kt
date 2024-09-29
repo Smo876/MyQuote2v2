@@ -40,7 +40,7 @@ fun Buttons(openAddQuoteDialog: MutableIntState, items: List<Quote>) {
                 }) {
                 Icon(
                     Icons.Filled.Delete,
-                    contentDescription = "Add",
+                    contentDescription = "Delete",
                     tint = androidx.compose.ui.graphics.Color.Gray,
                     modifier = Modifier.size(30.dp)
                 )

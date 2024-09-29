@@ -11,6 +11,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,7 +46,7 @@ private fun QuoteScreen(quoteViewModel: QuoteViewModel) {
         modifier = Modifier,
         color = MaterialTheme.colorScheme.background
     ) {
-        val items = quoteViewModel.getQuotes()
+        val items by quoteViewModel.getQuotes().collectAsState(emptyList())
         //val items by remember { mutableStateOf(quotes) }
         val openAlertDialog = remember { mutableIntStateOf(0) }
         val scrollToEnd = remember { mutableStateOf(false) }
@@ -61,15 +63,14 @@ private fun QuoteScreen(quoteViewModel: QuoteViewModel) {
                 horizontalAlignment = Alignment.CenterHorizontally,
 
                 ) {
-                if (listIsNotEmpty.value) MyQuote(items, scrollToEnd, deleteQuote, listIsNotEmpty)
+                if (items.isNotEmpty()) MyQuote(quoteViewModel, items, scrollToEnd, deleteQuote, listIsNotEmpty)
                 else EmptyList()
             }
         }
 
         when (openAlertDialog.intValue) {
-            1 -> DialogNewQuote(items, openAlertDialog, scrollToEnd, listIsNotEmpty)
+            1 -> DialogNewQuote(quoteViewModel, openAlertDialog, scrollToEnd, listIsNotEmpty)
             2 -> DialogDeleteQuote(openAlertDialog, deleteQuote)
         }
     }
-
 }

@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.mlex.myquote2v2.data.Quote
+import de.mlex.myquote2v2.data.QuoteViewModel
 import kotlinx.coroutines.launch
 
 
@@ -28,6 +29,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MyQuote(
+    quoteViewModel: QuoteViewModel,
     items: List<Quote>,
     scrollToEnd: MutableState<Boolean>,
     deleteQuote: MutableState<Boolean>,
@@ -72,6 +74,7 @@ fun MyQuote(
         scrollToEnd.value = false
     }
     if (deleteQuote.value) {
+        quoteViewModel.deleteQuoteById(page.value)
         //items.removeAt(page.value)
         if (items.isEmpty()) listIsNotEmpty.value = false
         deleteQuote.value = false

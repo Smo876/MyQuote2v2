@@ -1,6 +1,7 @@
 package de.mlex.myquote2v2.data
 
 import android.app.Application
+import kotlinx.coroutines.flow.Flow
 
 class QuoteRepository(application: Application) {
     private var quoteDao: QuoteDao
@@ -10,12 +11,12 @@ class QuoteRepository(application: Application) {
         quoteDao = database.quoteDao()
     }
 
-    val readAllQuotes: List<Quote> = quoteDao.getQuotes()
+    val readAllQuotes: Flow<List<Quote>> = quoteDao.getQuotes()
     suspend fun insertQuote(quote: Quote) {
         quoteDao.insertQuote(quote)
     }
 
-    suspend fun deleteQuoteById(id: Long) {
+    suspend fun deleteQuoteById(id: Int) {
         quoteDao.deleteQuoteById(id)
     }
 
