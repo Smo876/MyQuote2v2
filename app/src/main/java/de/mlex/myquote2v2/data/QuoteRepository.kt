@@ -16,12 +16,6 @@ class QuoteRepository(application: Application) {
         quoteDao.insertQuote(quote)
     }
 
-    suspend fun deleteQuoteById(id: Int) {
-        quoteDao.deleteQuoteById(id)
-    }
+    suspend fun deleteQuote(quote: Quote) = quoteDao.deleteQuote(quote)
 
-    init {
-        val database = AppDatabase.getDatabase(application)
-        quoteDao = database.quoteDao()
-    }
 }

@@ -1,6 +1,7 @@
 package de.mlex.myquote2v2.data
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
@@ -13,9 +14,6 @@ interface QuoteDao {
     @Insert
     suspend fun insertQuote(quote: Quote)
 
-    @Query("DELETE FROM quotes WHERE id = :id")
-    fun deleteQuoteById(id: Int): Int
-
-    //@Delete
-    //fun delete(quote: Quote)
+    @Delete
+    suspend fun deleteQuote(quote: Quote)
 }

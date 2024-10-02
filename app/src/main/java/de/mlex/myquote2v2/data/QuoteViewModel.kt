@@ -20,9 +20,9 @@ class QuoteViewModel(appObj: Application) : AndroidViewModel(appObj) {
 
     }
 
-    fun deleteQuoteById(id: Int) {
+    fun deleteQuote(quote: Quote) {
         viewModelScope.launch {
-            quoteRepository.deleteQuoteById(id)
+            quoteRepository.deleteQuote(quote)
         }
 
     }

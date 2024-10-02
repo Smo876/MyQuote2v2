@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -39,6 +41,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "MutableCollectionMutableState")
 @Composable
 private fun QuoteScreen(quoteViewModel: QuoteViewModel) {
@@ -47,11 +50,9 @@ private fun QuoteScreen(quoteViewModel: QuoteViewModel) {
         color = MaterialTheme.colorScheme.background
     ) {
         val items by quoteViewModel.getQuotes().collectAsState(emptyList())
-        //val items by remember { mutableStateOf(quotes) }
         val openAlertDialog = remember { mutableIntStateOf(0) }
         val scrollToEnd = remember { mutableStateOf(false) }
-        val deleteQuote = remember { mutableStateOf(false) }
-        val listIsNotEmpty = remember { mutableStateOf(items.isNotEmpty()) }
+        val pagerState = rememberPagerState(pageCount = { items.size })
         Scaffold(
             topBar = { TopBar() },
             bottomBar = { Buttons(openAlertDialog, items) }
@@ -63,14 +64,23 @@ private fun QuoteScreen(quoteViewModel: QuoteViewModel) {
                 horizontalAlignment = Alignment.CenterHorizontally,
 
                 ) {
-                if (items.isNotEmpty()) MyQuote(quoteViewModel, items, scrollToEnd, deleteQuote, listIsNotEmpty)
+                if (items.isNotEmpty()) MyQuote(
+                    items,
+                    scrollToEnd,
+                    pagerState
+                )
                 else EmptyList()
             }
         }
 
         when (openAlertDialog.intValue) {
-            1 -> DialogNewQuote(quoteViewModel, openAlertDialog, scrollToEnd, listIsNotEmpty)
-            2 -> DialogDeleteQuote(openAlertDialog, deleteQuote)
+            1 -> DialogNewQuote(openAlertDialog, scrollToEnd) {
+                quoteViewModel.insertQuote(it)
+            }
+
+            2 -> DialogDeleteQuote(openAlertDialog) {
+                quoteViewModel.deleteQuote(items[pagerState.currentPage])
+            }
         }
     }
 }
